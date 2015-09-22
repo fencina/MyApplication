@@ -1,0 +1,32 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.myapplication.AbmUsuarioActivity"
+    android:id="@+id/abmUsuarioLayout"
+    android:orientation="vertical"
+    android:layout_centerVertical="true"
+    android:layout_centerHorizontal="true"
+    android:gravity="center">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Agregar Usuario"
+        android:id="@+id/addUser"
+        android:layout_above="@+id/listUsers"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center_horizontal"
+        android:onClick="addUser" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Listar Usuarios"
+        android:id="@+id/listUsers"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignLeft="@+id/addUser"
+        android:layout_alignStart="@+id/addUser"
+        android:layout_alignRight="@+id/addUser"
+        android:layout_alignEnd="@+id/addUser" />
+</LinearLayout>
