@@ -19,13 +19,13 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.nombres);
 
         Intent intent = getIntent();
-        List<String> nombresList = intent.getStringArrayListExtra("nombresList");
+        List<String> usuariosList = intent.getStringArrayListExtra("usuariosList");
 
         ListView nombresView = (ListView) findViewById(R.id.nombresListView);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,nombresList);
+        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,usuariosList);
 
-        setTitle("Mi mensaje");
+        setTitle("Usuarios");
         nombresView.setAdapter(arrayAdapter);
 
     }

@@ -12,8 +12,7 @@ import java.util.ArrayList;
 
 public class NuevoUsuarioDialogFragment extends DialogFragment {
 
-    public static ArrayList<Usuario> usuariosCreados;
-    public static Activity abmUsuarioActivity = new AbmUsuarioActivity();
+    public static ArrayList<Usuario> usuariosCreados = new ArrayList<>();
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
@@ -26,12 +25,13 @@ public class NuevoUsuarioDialogFragment extends DialogFragment {
                 .setPositiveButton("Guardar", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         // guardar usuario
+                        Dialog f = (Dialog) dialog;
                         Usuario usuario = new Usuario();
 
-                        EditText editTextUser = (EditText) abmUsuarioActivity.findViewById(R.id.username);
+                        EditText editTextUser = (EditText) f.findViewById(R.id.username);
                         String textUser = editTextUser.getText().toString();
 
-                        EditText editTextPassword = (EditText) abmUsuarioActivity.findViewById(R.id.password);
+                        EditText editTextPassword = (EditText) f.findViewById(R.id.password);
                         String textPassword = editTextPassword.getText().toString();
 
                         usuario.user = textUser;

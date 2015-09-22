@@ -28,5 +28,6 @@
         android:layout_alignLeft="@+id/addUser"
         android:layout_alignStart="@+id/addUser"
         android:layout_alignRight="@+id/addUser"
-        android:layout_alignEnd="@+id/addUser" />
+        android:layout_alignEnd="@+id/addUser"
+        android:onClick="listUsers"/>
 </LinearLayout>
