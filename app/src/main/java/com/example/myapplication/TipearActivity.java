@@ -19,49 +19,86 @@ import java.util.Random;
 public class TipearActivity extends AppCompatActivity {
 
     public static ArrayList<String> palabras = new ArrayList<>();
-    public static Integer posicion = 0;
     public static String palabraActual;
+    public static CountDownTimer timer;
+    public static TextView palabra;
+    public static TextView reloj;
+    public static EditText tipeado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tipear);
-        cargarPalabras();
+        inicializar();
 
-        TextView palabra = (TextView) findViewById(R.id.palabra);
+        setNextWord();
+
+        setListeners();
+
+
+    }
+
+    public void inicializar(){
+        cargarPalabras();
+        crearElementosVista();
+        crearTimer();
+    }
+
+    public void crearElementosVista(){
+        reloj = (TextView) findViewById(R.id.reloj);
+        palabra = (TextView) findViewById(R.id.palabra);
+        tipeado = (EditText) findViewById(R.id.texto_tipeado);
+    }
+
+    public void crearTimer(){
+        timer = new CountDownTimer(10000, 1000) {
+
+
+            public void onTick(long millisUntilFinished) {
+                reloj.setText("Quedan " + millisUntilFinished  / 1000 + " segundos");
+            }
+
+            public void onFinish() {
+                if ( quedanPalabras() ) {
+                    String nuevaPalabra = getRandomWord();
+                    palabra.setText(nuevaPalabra);
+                    palabraActual = nuevaPalabra;
+                    this.start();
+                } else{
+                    reloj.setText("Terminado!");
+                }
+
+            }
+        };
+    }
+
+    public void cargarPalabras(){
+        palabras.add("hola");
+        palabras.add("chau");
+        palabras.add("android");
+        palabras.add("mensaje");
+    }
+
+    public void setNextWord(){
         palabraActual = getRandomWord();
         palabra.setText(palabraActual);
-//        posicion++;
+    }
 
-        EditText tipeado = (EditText) findViewById(R.id.texto_tipeado);
+    public String getRandomWord(){
+        Integer posicion = new Random().nextInt(palabras.size());
+        String palabraRandom = palabras.get(posicion);
+        palabras.remove(palabraRandom);
+
+        return palabraRandom;
+    }
+
+    public void setListeners(){
 
         tipeado.setOnFocusChangeListener(new View.OnFocusChangeListener() {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-
-                    new CountDownTimer(10000, 1000) {
-
-                        public void onTick(long millisUntilFinished) {
-                            TextView reloj = (TextView) findViewById(R.id.reloj);
-                            reloj.setText("Quedan " + millisUntilFinished  / 1000 + " segundos");
-                        }
-
-                        public void onFinish() {
-                            TextView reloj = (TextView) findViewById(R.id.reloj);
-
-                            if ( palabras.size() != 0) {
-                                TextView palabra = (TextView) findViewById(R.id.palabra);
-                                String nuevaPalabra = getRandomWord();
-                                palabra.setText(nuevaPalabra);
-                                palabraActual = nuevaPalabra;
-//                                posicion++;
-                                this.start();
-                            } else reloj.setText("Terminado!");
-
-                        }
-                    }.start();
-
+                    timer.start();
                 }
             }
         });
@@ -74,10 +111,8 @@ public class TipearActivity extends AppCompatActivity {
 
             @Override
             public void onTextChanged(CharSequence s, int start, int before, int count) {
-                if (  s.toString().equals( palabraActual )){
-                    TextView palabra = (TextView) findViewById(R.id.palabra);
+                if (s.toString().equals(palabraActual)) {
                     palabra.setText("Bien!");
-                    TextView tipeado = (TextView) findViewById(R.id.texto_tipeado);
                     tipeado.setText("");
                 }
             }
@@ -87,22 +122,10 @@ public class TipearActivity extends AppCompatActivity {
 
             }
         });
-
     }
 
-    public void cargarPalabras(){
-        palabras.add("hola");
-        palabras.add("chau");
-        palabras.add("android");
-        palabras.add("mensaje");
-    }
-
-    public String getRandomWord(){
-        Integer posicion = new Random().nextInt(palabras.size());
-        String palabraRandom = palabras.get(posicion);
-        palabras.remove(palabraRandom);
-
-        return palabraRandom;
+    public boolean quedanPalabras(){
+        return palabras.size() != 0;
     }
 
     @Override
