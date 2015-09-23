@@ -2,6 +2,7 @@ package com.example.myapplication;
 
 import android.app.Dialog;
 import android.content.Intent;
+import android.os.Parcelable;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -54,7 +55,7 @@ public class AbmUsuarioActivity extends AppCompatActivity {
     public void listUsers(View view){
         Intent intent = new Intent(this,DisplayMessageActivity.class);
 
-        intent.putExtra("usuariosList", NuevoUsuarioDialogFragment.usuariosCreados);
+        intent.putExtra("usuariosList", new UsuariosWrapper(NuevoUsuarioDialogFragment.usuariosCreados));
         startActivity(intent);
 
     }

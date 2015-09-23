@@ -9,6 +9,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class DisplayMessageActivity extends AppCompatActivity {
@@ -19,11 +20,12 @@ public class DisplayMessageActivity extends AppCompatActivity {
         setContentView(R.layout.nombres);
 
         Intent intent = getIntent();
-        List<String> usuariosList = intent.getStringArrayListExtra("usuariosList");
+        UsuariosWrapper usuariosWrapper = (UsuariosWrapper) intent.getSerializableExtra("usuariosList");
+        ArrayList<Usuario> usuariosList = usuariosWrapper.getUsuarios();
 
         ListView nombresView = (ListView) findViewById(R.id.nombresListView);
 
-        ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,usuariosList);
+        ArrayAdapter<Usuario> arrayAdapter = new ArrayAdapter<>(this,android.R.layout.simple_list_item_1,usuariosList);
 
         setTitle("Usuarios");
         nombresView.setAdapter(arrayAdapter);

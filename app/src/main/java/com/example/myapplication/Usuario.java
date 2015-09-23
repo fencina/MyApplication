@@ -1,9 +1,8 @@
 package com.example.myapplication;
 
-/**
- * Created by Usuario on 22/09/2015.
- */
-public class Usuario {
+import java.io.Serializable;
+
+public class Usuario implements Serializable {
 
     public String user;
     public String password;
