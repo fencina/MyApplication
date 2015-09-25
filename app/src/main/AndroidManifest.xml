@@ -30,7 +30,17 @@
         </activity>
         <activity
             android:name=".TipearActivity"
-            android:label="@string/title_activity_tipear" >
+            android:label="Juego"
+            android:windowSoftInputMode="stateVisible" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".MenuPrincipalActivity"
+            android:label="Menu Principal" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

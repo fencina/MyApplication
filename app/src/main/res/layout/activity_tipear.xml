@@ -23,7 +23,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/palabra"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp" />
+        android:layout_marginTop="71dp"/>
 
     <TextView
         android:layout_width="wrap_content"

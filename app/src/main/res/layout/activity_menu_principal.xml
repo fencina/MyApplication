@@ -1,0 +1,41 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    tools:context="com.example.myapplication.MenuPrincipalActivity">
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Single Game"
+        android:id="@+id/startSingle"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="141dp"
+        android:onClick="startSingleGame"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Survival"
+        android:id="@+id/startSurvival"
+        android:layout_below="@+id/startSingle"
+        android:layout_alignRight="@+id/startSingle"
+        android:layout_alignEnd="@+id/startSingle"
+        android:layout_alignLeft="@+id/startSingle"
+        android:layout_alignStart="@+id/startSingle"
+        android:onClick="startSurvivalGame"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Puntajes"
+        android:id="@+id/verPuntajes"
+        android:layout_below="@+id/startSurvival"
+        android:layout_alignRight="@+id/startSurvival"
+        android:layout_alignEnd="@+id/startSurvival"
+        android:layout_alignLeft="@+id/startSurvival"
+        android:layout_alignStart="@+id/startSurvival" />
+</RelativeLayout>
