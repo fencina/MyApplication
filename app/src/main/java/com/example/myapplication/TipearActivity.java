@@ -3,9 +3,14 @@ package com.example.myapplication;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.telephony.CellIdentityCdma;
+import android.util.AttributeSet;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.View;
 
 import com.example.myapplication.constantes.TipoJuegosConstant;
+import com.example.myapplication.utils.CircleProgressBar;
 
 
 public class TipearActivity extends AppCompatActivity {
@@ -39,6 +44,8 @@ public class TipearActivity extends AppCompatActivity {
         nuevoJuego.inicializar();
         nuevoJuego.setNextWord();
         nuevoJuego.setListeners();
+
+
     }
 
 
