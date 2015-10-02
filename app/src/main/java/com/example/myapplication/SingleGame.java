@@ -18,11 +18,17 @@ public class SingleGame extends Juego {
     }
 
     public void cargarPalabras(){
-        this.palabras.add("este");
-        this.palabras.add("es");
-        this.palabras.add("un");
-        this.palabras.add("single");
-        this.palabras.add("game");
+        this.palabras.add("juego");
+        this.palabras.add("hola");
+        this.palabras.add("chau");
+        this.palabras.add("mensaje");
+        this.palabras.add("android");
+        this.palabras.add("php");
+        this.palabras.add("java");
+        this.palabras.add("ruby");
+        this.palabras.add("python");
+        this.palabras.add("pascal");
+        this.palabras.add("smalltalk");
 
     }
 }

@@ -29,9 +29,11 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_below="@+id/palabra"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/reloj"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:text="Listo?" />
+
 </RelativeLayout>

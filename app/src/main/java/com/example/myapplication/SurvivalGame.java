@@ -17,10 +17,16 @@ public class SurvivalGame extends Juego {
     }
 
     public void cargarPalabras(){
-        this.palabras.add("en");
-        this.palabras.add("cambio");
-        this.palabras.add("este");
         this.palabras.add("survival");
-        this.palabras.add("es");
+        this.palabras.add("prolog");
+        this.palabras.add("haskell");
+        this.palabras.add("scala");
+        this.palabras.add("spring");
+        this.palabras.add("symfony");
+        this.palabras.add("node");
+        this.palabras.add("express");
+        this.palabras.add("angular");
+        this.palabras.add("jquery");
+        this.palabras.add("javascript");
     }
 }

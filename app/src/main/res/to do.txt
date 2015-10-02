@@ -4,6 +4,7 @@ Funcionalidad:
 	- Crear boosters y trampas
 	- Agregar strings para diferentes idiomas (español,ingles)
 	- Agregar BD de palabras
+	- Modalidad multiplayer
 	
 Reglas de juego:
 	Single:
