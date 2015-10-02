@@ -1,0 +1,18 @@
+Funcionalidad:
+	- Pantalla menu principal 
+	- Pantalla de resultados personal (tabs con las distintas modalidades de juego)
+	- Crear boosters y trampas
+	- Agregar strings para diferentes idiomas (español,ingles)
+	- Agregar BD de palabras
+	
+Reglas de juego:
+	Single:
+		- 1 minuto, se escribe la mayor cantidad de palabras posibles => se muestra pantalla de resultado 
+		  con la cantidad de palabras escritas correctamente y velocidad (definir calculo) => siempre se guarda el resultado => boton jugar de nuevo
+	Survival:
+		- 10 segundos (puede variar dinamicamente), si termina este tiempo => PIERDE, ira aumentando la dificultad (criterio a definir: segun cantidad 
+		  de palabras escritas, tiempo real transcurrido) palabras mas dificiles (pueden ser textos) o menos tiempo, podra utilizar boosters y haber trampas
+	Multijugador:
+
+Graficos:
+	- ir marcando las letras completadas correctamente en verde, en rojo y vibrar si es incorrecto
