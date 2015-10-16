@@ -2,8 +2,11 @@ package com.example.myapplication;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Color;
+import android.graphics.Typeface;
 import android.os.CountDownTimer;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.text.Editable;
 import android.text.Spannable;
@@ -11,7 +14,9 @@ import android.text.SpannableString;
 import android.text.TextWatcher;
 import android.text.style.ForegroundColorSpan;
 import android.view.View;
+import android.widget.Chronometer;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.myapplication.utils.CircleProgressBar;
@@ -28,12 +33,19 @@ public abstract class Juego {
     public Activity juegoContext;
     public ArrayList<String> palabras = new ArrayList<>();
     public String palabraActual;
-    public static CircleProgressBar circleProgressBar;
     public CountDownTimer timer;
+    public CountDownTimer timerProgressBar;
+    public int timePerWord; //en milisegundos
+    public long tiempoTotalJuego; //en milisegundos
+    public int palabrasEscritas = 0;
+    public Chronometer cronometro;
+    public int tipoJuego;
+
+    // Elementos de la vista
     public TextView palabraText;
     public TextView relojText;
     public EditText tipeadoEditText;
-    public int time; //en milisegundos
+    public ProgressBar circleProgressBar;
 
     public Juego(Activity juegoContext){
         this.juegoContext = juegoContext;
@@ -41,44 +53,71 @@ public abstract class Juego {
 
     public void inicializar(){
         setTitle();
-        setTime();
+        setTimePerWord();
+        setTipoJuego();
         cargarPalabras();
         crearElementosVista();
         crearTimer();
+        crearProgressBarTimer();
+        setCronometro();
     }
 
-    public abstract void setTime();
+    public abstract void setTimePerWord();
+    public abstract void setTipoJuego();
     public abstract void setTitle();
     public abstract void cargarPalabras();
+
+    public void setCronometro(){
+        cronometro = new Chronometer(juegoContext);
+        cronometro.setBase(SystemClock.elapsedRealtime());
+    }
 
     public void crearElementosVista(){
         relojText = (TextView) juegoContext.findViewById(R.id.reloj);
         palabraText = (TextView) juegoContext.findViewById(R.id.palabra);
+        Typeface typeFace= Typeface.createFromAsset(juegoContext.getAssets(), "fonts/good_dog.otf");
+        palabraText.setTypeface(typeFace);
+        relojText.setTypeface(typeFace);
+
         tipeadoEditText = (EditText) juegoContext.findViewById(R.id.texto_tipeado);
     }
 
     public void crearTimer(){
 
-        circleProgressBar = (CircleProgressBar) juegoContext.findViewById(R.id.custom_progressBar);
-        circleProgressBar.setMax(time);
-
-        timer = new CountDownTimer(time, 1000) {
+        timer = new CountDownTimer(timePerWord, 1000) {
 
             public void onTick(long millisUntilFinished) {
-                relojText.setText("Quedan " + millisUntilFinished / 1000 + " segundos");
-
-//                circleProgressBar.setProgress(millisUntilFinished / 1000);
-                circleProgressBar.setProgressWithAnimation(time - millisUntilFinished);
+                relojText.setText(""+ millisUntilFinished  / 1000 +"");
             }
 
             public void onFinish() {
                 if ( quedanPalabras() ) {
                     setNextWord();
-                    this.start();
+                    lanzarTimers();
                     tipeadoEditText.setText("");
                 } else{
                     relojText.setText("Terminado!");
+                    cronometro.stop();
+                    tiempoTotalJuego = SystemClock.elapsedRealtime() - cronometro.getBase();
+                    mostrarResultados();
                 }
+
+            }
+        };
+    }
+
+    public void crearProgressBarTimer(){
+
+        circleProgressBar = (ProgressBar) juegoContext.findViewById(R.id.circleProgressBar);
+        circleProgressBar.setMax(timePerWord);
+
+        timerProgressBar = new CountDownTimer(timePerWord, 50) {
+
+            public void onTick(long millisUntilFinished) {
+                circleProgressBar.setProgress((int) (timePerWord - millisUntilFinished));
+            }
+
+            public void onFinish() {
 
             }
         };
@@ -91,7 +130,7 @@ public abstract class Juego {
             palabraText.setText(palabraActual);
         }
         else {
-            timer.cancel();
+            pararTimers();
         }
 
     }
@@ -109,7 +148,8 @@ public abstract class Juego {
             @Override
             public void onFocusChange(View v, boolean hasFocus) {
                 if (hasFocus) {
-                    timer.start();
+                    lanzarTimers();
+                    cronometro.start();
                 }
             }
         });
@@ -126,12 +166,17 @@ public abstract class Juego {
                 colorearPalabra(tipeadoHastaAhora);
 
                 if (tipeoCorrectamente(tipeadoHastaAhora) && quedanPalabras()) {
+                    palabrasEscritas++;
                     setNextWord();
-                    timer.start();
+                    lanzarTimers();
                     tipeadoEditText.setText("");
                 } else if (tipeoCorrectamente(tipeadoHastaAhora) && !quedanPalabras()) {
-                    timer.cancel();
+                    palabrasEscritas++;
+                    pararTimers();
                     relojText.setText("Ganaste!");
+                    cronometro.stop();
+                    tiempoTotalJuego = SystemClock.elapsedRealtime() - cronometro.getBase();
+                    mostrarResultados();
                 }
             }
 
@@ -140,6 +185,16 @@ public abstract class Juego {
 
             }
         });
+    }
+
+    public void lanzarTimers(){
+        timer.start();
+        timerProgressBar.start();
+    }
+
+    public void pararTimers(){
+        timer.cancel();
+        timerProgressBar.cancel();
     }
 
     private void colorearPalabra(CharSequence tipeadoHastaAhora){
@@ -194,5 +249,13 @@ public abstract class Juego {
 
     public boolean quedanPalabras(){
         return palabras.size() > 0;
+    }
+
+    public void mostrarResultados(){
+        Intent intentResultados = new Intent(juegoContext,ResultadosActivity.class);
+        intentResultados.putExtra("palabrasEscritas",palabrasEscritas);
+        intentResultados.putExtra("tiempoTotal",tiempoTotalJuego);
+        intentResultados.putExtra("tipoJuego", tipoJuego);
+        juegoContext.startActivity(intentResultados);
     }
 }

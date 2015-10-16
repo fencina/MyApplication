@@ -2,19 +2,22 @@ package com.example.myapplication;
 
 import android.app.Activity;
 
+import com.example.myapplication.constantes.TipoJuegosConstant;
+
 public class SingleGame extends Juego {
 
     public SingleGame(Activity juegoContext){
         super(juegoContext);
     }
 
-    public void setTime(){
-        this.time = 10000;
+    public void setTimePerWord(){
+        this.timePerWord = 10000;
     }
-
-
     public void setTitle(){
         this.juegoContext.setTitle("Single Game");
+    }
+    public void setTipoJuego(){
+        this.tipoJuego = TipoJuegosConstant.SINGLE;
     }
 
     public void cargarPalabras(){

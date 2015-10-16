@@ -2,18 +2,24 @@ package com.example.myapplication;
 
 import android.app.Activity;
 
+import com.example.myapplication.constantes.TipoJuegosConstant;
+
 public class SurvivalGame extends Juego {
 
     public SurvivalGame(Activity juegoContext){
         super(juegoContext);
     }
 
-    public void setTime(){
-        this.time = 5000;
+    public void setTimePerWord(){
+        this.timePerWord = 5000;
     }
 
     public void setTitle(){
         this.juegoContext.setTitle("Survival Game");
+    }
+
+    public void setTipoJuego(){
+        this.tipoJuego = TipoJuegosConstant.SURVIVAL;
     }
 
     public void cargarPalabras(){

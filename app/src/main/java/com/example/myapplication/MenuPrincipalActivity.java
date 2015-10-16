@@ -11,27 +11,22 @@ import com.example.myapplication.constantes.TipoJuegosConstant;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
 
+    public static MenuPrincipal menu;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
+        menu = new MenuPrincipal(this);
     }
 
     public void startSingleGame(View view){
-        startGame(TipoJuegosConstant.SINGLE);
+        menu.startGame(TipoJuegosConstant.SINGLE);
     }
 
     public void startSurvivalGame(View view){
-        startGame(TipoJuegosConstant.SURVIVAL);
+        menu.startGame(TipoJuegosConstant.SURVIVAL);
     }
-
-    private void startGame(int tipoJuego){
-        Intent gameIntent = new Intent(this, TipearActivity.class);
-
-        gameIntent.putExtra("tipoJuego", tipoJuego);
-        startActivity(gameIntent);
-    }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

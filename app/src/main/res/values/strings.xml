@@ -6,4 +6,5 @@
     <string name="title_activity_abm_usuario">AbmUsuarioActivity</string>
     <string name="title_activity_tipear">Type Fast</string>
     <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
+    <string name="title_activity_resultados">ResultadosActivity</string>
 </resources>

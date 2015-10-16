@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<layer-list   xmlns:android="http://schemas.android.com/apk/res/android" >
+
+<item android:id="@android:id/background">
+
+<shape
+android:innerRadiusRatio="2.3"
+    android:shape="ring"
+    android:useLevel="false"
+    android:thickness="3.8sp" >
+
+<solid android:color="#D3D3D3" />
+
+</shape>
+
+</item>
+
+    <item >
+<rotate
+    android:fromDegrees="270"
+    android:toDegrees="270"
+    android:pivotX="50%"
+    android:pivotY="50%"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <shape
+        android:useLevel="true"
+        android:innerRadiusRatio="2.3"
+        android:shape="ring"
+        android:thickness="3.8sp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        xmlns:android="http://schemas.android.com/apk/res/android">
+        <gradient android:startColor="#FF669900"
+            android:centerColor="#FF669900"
+            android:endColor="#FFFF4444"
+            android:type="sweep"/>
+
+        </shape>
+
+</rotate>
+    </item>
+</layer-list>

@@ -11,40 +11,46 @@
     android:descendantFocusability="beforeDescendants"
     android:focusableInTouchMode="true">
 
+    <ProgressBar
+        android:id="@+id/circleProgressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="100dip"
+        android:layout_height="100dip"
+        android:indeterminate="false"
+        android:progressDrawable="@drawable/circle_progress_bar"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
+
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:id="@+id/texto_tipeado"
-        android:layout_below="@+id/palabra"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="41dp"
         android:hint="Pulse aquí para empezar"
-        android:singleLine="true"/>
+        android:singleLine="true"
+        android:inputType="textNoSuggestions|textUri"
+        android:layout_below="@+id/circleProgressBar"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="52dp" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceMedium"
         android:id="@+id/palabra"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="71dp"/>
+        android:layout_marginTop="101dp"
+        android:textSize="30dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/palabra"
         android:textAppearance="?android:attr/textAppearanceSmall"
         android:id="@+id/reloj"
+        android:textSize="25dp"
+        android:text="Listo?"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:text="Listo?" />
-
-    <com.example.myapplication.utils.CircleProgressBar
-        android:id="@+id/custom_progressBar"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_margin="10dp"
-        app:progress="35"
-        app:progressBarThickness="4dp"/>
+        android:layout_marginTop="41dp" />
 
 </RelativeLayout>
