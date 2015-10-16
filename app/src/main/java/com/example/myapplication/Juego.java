@@ -40,6 +40,7 @@ public abstract class Juego {
     public int palabrasEscritas = 0;
     public Chronometer cronometro;
     public int tipoJuego;
+    public GameBestResult bestResult = new GameBestResult();
 
     // Elementos de la vista
     public TextView palabraText;
@@ -253,6 +254,9 @@ public abstract class Juego {
 
     public void mostrarResultados(){
         Intent intentResultados = new Intent(juegoContext,ResultadosActivity.class);
+        bestResult.cantidadPalabras = palabrasEscritas;
+        bestResult.tiempo = tiempoTotalJuego;
+
         intentResultados.putExtra("palabrasEscritas",palabrasEscritas);
         intentResultados.putExtra("tiempoTotal",tiempoTotalJuego);
         intentResultados.putExtra("tipoJuego", tipoJuego);

@@ -28,6 +28,11 @@ public class MenuPrincipalActivity extends AppCompatActivity {
         menu.startGame(TipoJuegosConstant.SURVIVAL);
     }
 
+    public void verPuntajes(View view){
+        Intent puntajesIntent = new Intent(this,PuntajesActivity.class);
+        startActivity(puntajesIntent);
+    }
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.

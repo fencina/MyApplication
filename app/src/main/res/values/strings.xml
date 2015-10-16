@@ -7,4 +7,9 @@
     <string name="title_activity_tipear">Type Fast</string>
     <string name="title_activity_menu_principal">MenuPrincipalActivity</string>
     <string name="title_activity_resultados">ResultadosActivity</string>
+    <string name="title_activity_puntajes">PuntajesActivity</string>
+
+    <string name="title_section1">Section 1</string>
+    <string name="title_section2">Section 2</string>
+    <string name="title_section3">Section 3</string>
 </resources>

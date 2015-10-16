@@ -37,5 +37,6 @@
         android:layout_alignRight="@+id/startSurvival"
         android:layout_alignEnd="@+id/startSurvival"
         android:layout_alignLeft="@+id/startSurvival"
-        android:layout_alignStart="@+id/startSurvival" />
+        android:layout_alignStart="@+id/startSurvival"
+        android:onClick="verPuntajes"/>
 </RelativeLayout>

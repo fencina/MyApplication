@@ -17,3 +17,7 @@ Reglas de juego:
 
 Graficos:
 	- ir marcando las letras completadas correctamente en verde, en rojo y vibrar si es incorrecto
+
+FIXs:
+	- timer termina en 1 cuando deberia llegar al 0
+	- no girar la pantalla durante el juego
