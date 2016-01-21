@@ -1,23 +1,32 @@
 package com.example.myapplication;
 
 import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 
 import com.example.myapplication.constantes.TipoJuegosConstant;
 
 public class MenuPrincipalActivity extends AppCompatActivity {
 
     public static MenuPrincipal menu;
+    public static AnimationDrawable animation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_menu_principal);
         menu = new MenuPrincipal(this);
+
+        ImageView animationImage = (ImageView) findViewById(R.id.animationView);
+        animationImage.setBackgroundResource(R.drawable.animation_test);
+
+        animation = (AnimationDrawable) animationImage.getBackground();
+        animation.start();
     }
 
     public void startSingleGame(View view){
